@@ -123,6 +123,7 @@ int main() {
 
     cout << "" << endl;
     cout << "---------------------------------------------------- Triage ----------------------------------------------------" << endl;
+    cout << "Cola número 1." << endl;
     cout << "" << endl;
 
 
@@ -130,8 +131,8 @@ int main() {
     while (!triage.colaCodigoAzul.empty()) {
         NodoPaciente* paciente = triage.desencolarCodigoAzul();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
-        atencionMedica.trasladarPacienteAPila(paciente, "PilaCodigoAzul");
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
+        atencionMedica.trasladarPacienteAPila1(paciente, "PilaCodigoAzul");
     }
 
     cout << "" << endl;
@@ -140,8 +141,8 @@ int main() {
     while (!triage.colaEstabilidadUrgente.empty()) {
         NodoPaciente* paciente = triage.desencolarEstabilidadUrgente();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
-        atencionMedica.trasladarPacienteAPila(paciente, "PilaEstabilidadUrgente");
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
+        atencionMedica.trasladarPacienteAPila1(paciente, "PilaEstabilidadUrgente");
     }
 
     cout << "" << endl;
@@ -150,8 +151,8 @@ int main() {
     while (!triage.colaUrgenciasNormales.empty()) {
         NodoPaciente* paciente = triage.desencolarUrgenciasNormales();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
-        atencionMedica.trasladarPacienteAPila(paciente, "PilaUrgenciasNormales");
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
+        atencionMedica.trasladarPacienteAPila1(paciente, "PilaUrgenciasNormales");
     }
 
     cout << "" << endl;
@@ -160,67 +161,120 @@ int main() {
     while (!triage.colaUrgenciasLeves.empty()) {
         NodoPaciente* paciente = triage.desencolarUrgenciasLeves();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
-        atencionMedica.trasladarPacienteAPila(paciente, "PilaUrgenciasLeves");
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << std::endl;
+        atencionMedica.trasladarPacienteAPila1(paciente, "PilaUrgenciasLeves");
     }
 
     cout << "" << endl;
-    cout << "---------------------------------------------------- Atención Medica ----------------------------------------------------" << endl;
+    cout << "---------------------------------------------------- Atención Medica #1 (obligatoria) ----------------------------------------------------" << endl;
+    cout << "Pila número 1." << endl;
     cout << "" << endl;
 
     cout << "Pacientes de Pila Código Azul:" << endl;
-    while (!atencionMedica.pilaCodigoAzul.empty()) {
-        NodoPaciente* paciente = atencionMedica.pilaCodigoAzul.top();
+    while (!atencionMedica.pilaCodigoAzul1.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaCodigoAzul1.top();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Estabilización de dolencias y " << atencionMedica.atencionMedicaAleatoria() << std::endl;
-        salidaDelPaciente.encolarPaciente(paciente);
-        atencionMedica.pilaCodigoAzul.pop();
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #1: Estabilización de dolencias y monitoreo de signos vitales durante " << atencionMedica.tiempoDeEsperaAtencionMedica1() << " minutos." << endl;
+        // Ahora se traslada a la atención médica #2
+        atencionMedica.trasladarPacienteAPila2(paciente, "PilaCodigoAzul");
+        atencionMedica.pilaCodigoAzul1.pop();
     }
 
     cout << "" << endl;
 
     cout << "Pacientes de Pila Estabilidad Urgente:" << endl;
-    while (!atencionMedica.pilaEstabilidadUrgente.empty()) {
-        NodoPaciente* paciente = atencionMedica.pilaEstabilidadUrgente.top();
+    while (!atencionMedica.pilaEstabilidadUrgente1.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaEstabilidadUrgente1.top();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Estabilización de dolencias y " << atencionMedica.atencionMedicaAleatoria() << std::endl;
-        salidaDelPaciente.encolarPaciente(paciente);
-        atencionMedica.pilaEstabilidadUrgente.pop();
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #1: Estabilización de dolencias y monitoreo de signos vitales durante " << atencionMedica.tiempoDeEsperaAtencionMedica1() << " minutos." << endl;
+        // Ahora se traslada a la atención médica #2
+        atencionMedica.trasladarPacienteAPila2(paciente, "PilaEstabilidadUrgente");
+        atencionMedica.pilaEstabilidadUrgente1.pop();
     }
 
     cout << "" << endl;
 
     cout << "Pacientes de Pila Urgencias Normales:" << endl;
-    while (!atencionMedica.pilaUrgenciasNormales.empty()) {
-        NodoPaciente* paciente = atencionMedica.pilaUrgenciasNormales.top();
+    while (!atencionMedica.pilaUrgenciasNormales1.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaUrgenciasNormales1.top();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Exámenes médicos y " << atencionMedica.atencionMedicaAleatoriaEspecificaNormal() << std::endl;
-        salidaDelPaciente.encolarPaciente(paciente);
-        atencionMedica.pilaUrgenciasNormales.pop();
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Exámenes médicos." << endl;
+        // Ahora se traslada a la atención médica #2
+        atencionMedica.trasladarPacienteAPila2(paciente, "PilaUrgenciasNormales");
+        atencionMedica.pilaUrgenciasNormales1.pop();
     }
 
     cout << "" << endl;
 
     cout << "Pacientes de Pila Urgencias Leves:" << endl;
-    while (!atencionMedica.pilaUrgenciasLeves.empty()) {
-        NodoPaciente* paciente = atencionMedica.pilaUrgenciasLeves.top();
+    while (!atencionMedica.pilaUrgenciasLeves1.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaUrgenciasLeves1.top();
         // Imprimir la información del paciente
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Pruebas diagnósticas y " << atencionMedica.atencionMedicaAleatoriaEspecificaLeve() << std::endl;
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica: Pruebas diagnósticas." << endl;
+        // Ahora se traslada a la atención médica #2
+        atencionMedica.trasladarPacienteAPila2(paciente, "PilaUrgenciasLeves");
+        atencionMedica.pilaUrgenciasLeves1.pop();
+    }
+
+    cout << "" << endl;
+    cout << "---------------------------------------------------- Atención Medica #2 (Aleatoria) ----------------------------------------------------" << endl;
+    cout << "Pila número 2." << endl;
+    cout << "" << endl;
+
+    cout << "Pacientes de Pila Código Azul:" << endl;
+    while (!atencionMedica.pilaCodigoAzul2.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaCodigoAzul2.top();
+        // Imprimir la información del paciente
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #2: " << atencionMedica.atencionMedicaAleatoria() << endl;
         salidaDelPaciente.encolarPaciente(paciente);
-        atencionMedica.pilaUrgenciasLeves.pop();
+        atencionMedica.pilaCodigoAzul2.pop();
+    }
+
+    cout << "" << endl;
+
+    cout << "Pacientes de Pila Estabilidad Urgente:" << endl;
+    while (!atencionMedica.pilaEstabilidadUrgente2.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaEstabilidadUrgente2.top();
+        // Imprimir la información del paciente
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #2: " << atencionMedica.atencionMedicaAleatoria() << endl;
+        salidaDelPaciente.encolarPaciente(paciente);
+        atencionMedica.pilaEstabilidadUrgente2.pop();
+    }
+
+    cout << "" << endl;
+
+    cout << "Pacientes de Pila Urgencias Normales:" << endl;
+    while (!atencionMedica.pilaUrgenciasNormales2.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaUrgenciasNormales2.top();
+        // Imprimir la información del paciente
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #2: " << atencionMedica.atencionMedicaAleatoriaEspecificaNormal() << endl;
+        salidaDelPaciente.encolarPaciente(paciente);
+        atencionMedica.pilaUrgenciasNormales2.pop();
+    }
+
+    cout << "" << endl;
+
+    cout << "Pacientes de Pila Urgencias Leves:" << endl;
+    while (!atencionMedica.pilaUrgenciasLeves2.empty()) {
+        NodoPaciente* paciente = atencionMedica.pilaUrgenciasLeves2.top();
+        // Imprimir la información del paciente
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Atención Médica #2: " << atencionMedica.atencionMedicaAleatoriaEspecificaLeve() << endl;
+        salidaDelPaciente.encolarPaciente(paciente);
+        atencionMedica.pilaUrgenciasLeves2.pop();
     }
 
     cout << "" << endl;
     cout << "---------------------------------------------------- Salida del paciente ----------------------------------------------------" << endl;
+    cout << "Cola número 2." << endl;
     cout << "" << endl;
 
-    cout << "Salida de pacientes de Código Azul:" << endl;
+    cout << "Cola de salida de pacientes de Código Azul:" << endl;
     while (!salidaDelPaciente.colaSalidaCodigoAzul.empty()) {
         NodoPaciente* paciente = salidaDelPaciente.colaSalidaCodigoAzul.front();
         // Imprimir la información del paciente
-        string tiempoEsperaPaciente = atencionMedica.tiempoDeEsperaCodigoAzul();
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << std::endl;
-        if (tiempoEsperaPaciente == "Atención no inmediata.") {
+        int tiempoEsperaPaciente = atencionMedica.tiempoDeEsperaCodigoAzul();
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << endl;
+        if (tiempoEsperaPaciente > 5) {
             cout << "El paciente ha muerto. (Morgue)" << endl;
         } else {
             // Se genera un número random
@@ -244,12 +298,12 @@ int main() {
 
     cout << "" << endl;
 
-    cout << "Salida de pacientes de Estabilidad Urgente:" << endl;
+    cout << "Cola de salida de pacientes de Estabilidad Urgente:" << endl;
     while (!salidaDelPaciente.colaSalidaEstabilidadUrgente.empty()) {
         NodoPaciente* paciente = salidaDelPaciente.colaSalidaEstabilidadUrgente.front();
         // Imprimir la información del paciente
         int tiempoEsperaPaciente = atencionMedica.tiempoDeEsperaEstabilidadUrgente();
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << std::endl;
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << endl;
         if (tiempoEsperaPaciente > 20) {
             cout << "El paciente ha muerto. (Morgue)" << endl;
         } else {
@@ -274,12 +328,12 @@ int main() {
 
     cout << "" << endl;
 
-    cout << "Salida de pacientes de Urgencias Normales:" << endl;
+    cout << "Cola de salida de pacientes de Urgencias Normales:" << endl;
     while (!salidaDelPaciente.colaSalidaUrgenciasNormales.empty()) {
         NodoPaciente* paciente = salidaDelPaciente.colaSalidaUrgenciasNormales.front();
         // Imprimir la información del paciente
         int tiempoEsperaPaciente = atencionMedica.tiempoDeEsperaUrgenciasNormales();
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << std::endl;
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << endl;
         if (tiempoEsperaPaciente > 40) {
             cout << "Alta voluntaria" << endl;
         } else {
@@ -291,12 +345,12 @@ int main() {
 
     cout << "" << endl;
 
-    cout << "Salida de pacientes de Urgencias Leves:" << endl;
+    cout << "Cola de salida de pacientes de Urgencias Leves:" << endl;
     while (!salidaDelPaciente.colaSalidaUrgenciasLeves.empty()) {
         NodoPaciente* paciente = salidaDelPaciente.colaSalidaUrgenciasLeves.front();
         // Imprimir la información del paciente
         int tiempoEsperaPaciente = atencionMedica.tiempoDeEsperaUrgenciasLeves();
-        cout << "ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << std::endl;
+        cout << "- ID: " << paciente->id << ", Nombre: " << paciente->nombre << ", Apellido: " << paciente->apellido << ", Tiempo de espera: " << tiempoEsperaPaciente << " minutos." << endl;
         if (tiempoEsperaPaciente > 70) {
             cout << "Alta voluntaria" << endl;
         } else {

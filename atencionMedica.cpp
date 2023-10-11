@@ -4,26 +4,41 @@
 #include "atencionMedica.h"
 #include <random>
 
-void AtencionMedica::trasladarPacienteAPila(NodoPaciente* paciente, string nombrePila) {
+void AtencionMedica::trasladarPacienteAPila1(NodoPaciente* paciente, string nombrePila) {
     // Encolar al paciente en la pila correspondiente
     if (nombrePila == "PilaCodigoAzul") {
-        pilaCodigoAzul.push(paciente);
+        pilaCodigoAzul1.push(paciente);
     } else if (nombrePila == "PilaEstabilidadUrgente") {
-        pilaEstabilidadUrgente.push(paciente);
+        pilaEstabilidadUrgente1.push(paciente);
     } else if (nombrePila == "PilaUrgenciasNormales") {
-        pilaUrgenciasNormales.push(paciente);
+        pilaUrgenciasNormales1.push(paciente);
     } else if (nombrePila == "PilaUrgenciasLeves") {
-        pilaUrgenciasLeves.push(paciente);
+        pilaUrgenciasLeves1.push(paciente);
+    } else {
+        cout << "Nombre de pila no válido." << endl;
+    }
+}
+
+void AtencionMedica::trasladarPacienteAPila2(NodoPaciente *paciente, string nombrePila) {
+    // Encolar al paciente en la pila correspondiente
+    if (nombrePila == "PilaCodigoAzul") {
+        pilaCodigoAzul2.push(paciente);
+    } else if (nombrePila == "PilaEstabilidadUrgente") {
+        pilaEstabilidadUrgente2.push(paciente);
+    } else if (nombrePila == "PilaUrgenciasNormales") {
+        pilaUrgenciasNormales2.push(paciente);
+    } else if (nombrePila == "PilaUrgenciasLeves") {
+        pilaUrgenciasLeves2.push(paciente);
     } else {
         cout << "Nombre de pila no válido." << endl;
     }
 }
 
 string AtencionMedica::atencionMedicaAleatoria() {
-    // Generar un número aleatorio entre 1 y 4 con random
+    // Generar un número aleatorio entre 1 y 3 con random
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distr(1, 2);
+    uniform_int_distribution<> distr(1, 3);
     int numeroAleatorio = distr(gen);
 
     // Según el número se elige un tipo de atención médica
@@ -31,58 +46,52 @@ string AtencionMedica::atencionMedicaAleatoria() {
         return "Exámenes médicos";
     } else if (numeroAleatorio == 2) {
         return "Pruebas diagnósticas";
-    } else {
-        return "Error";
+    } else if (numeroAleatorio == 3) {
+        return "Procedimientos curativos";
     }
 }
 
 string AtencionMedica::atencionMedicaAleatoriaEspecificaNormal() {
-    // Generar un número aleatorio entre 1 y 4 con random
+    // Generar un número aleatorio entre 1 y 3 con random
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distr(1, 2);
+    uniform_int_distribution<> distr(1, 3);
     int numeroAleatorio = distr(gen);
 
     // Según el número se elige un tipo de atención médica
     if (numeroAleatorio == 1) {
-        return "Estabilización de dolencias";
+        return "Estabilización de dolencias y monitoreo de signos vitales";
     } else if (numeroAleatorio == 2) {
         return "Pruebas diagnósticas";
-    } else {
-        return "Error";
+    } else if (numeroAleatorio == 3){
+        return "Procedimientos curativos";
     }
 }
 
 string AtencionMedica::atencionMedicaAleatoriaEspecificaLeve() {
-    // Generar un número aleatorio entre 1 y 4 con random
+    // Generar un número aleatorio entre 1 y 3 con random
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distr(1, 2);
+    uniform_int_distribution<> distr(1, 3);
     int numeroAleatorio = distr(gen);
 
     // Según el número se elige un tipo de atención médica
     if (numeroAleatorio == 1) {
-        return "Estabilización de dolencias";
+        return "Estabilización de dolencias y monitoreo de signos vitales";
     } else if (numeroAleatorio == 2) {
         return "Exámenes médicos";
-    } else {
-        return "Error";
+    } else if (numeroAleatorio == 3) {
+        return "Procedimientos curativos";
     }
 }
-
-string AtencionMedica::tiempoDeEsperaCodigoAzul() {
+int AtencionMedica::tiempoDeEsperaCodigoAzul() {
     // Genera un número aleatorio entre 1 y 5 minutos
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> distr(1, 2);
+    uniform_int_distribution<> distr(1, 10);
     int tiempoAleatorio = distr(gen);
-    if (tiempoAleatorio == 1) {
-        return "Atención inmediata.";
-    } else if (tiempoAleatorio == 2) {
-        return "Atención no inmediata.";
-    } else {
-        return "Error";
-    }
+
+    return tiempoAleatorio;
 }
 
 int AtencionMedica::tiempoDeEsperaEstabilidadUrgente() {
@@ -110,6 +119,16 @@ int AtencionMedica::tiempoDeEsperaUrgenciasLeves() {
     random_device rd;
     mt19937 gen(rd());
     uniform_int_distribution<> distr(40, 100);
+    int tiempoAleatorio = distr(gen);
+
+    return tiempoAleatorio;
+}
+
+int AtencionMedica::tiempoDeEsperaAtencionMedica1() {
+    // Genera un número aleatorio entre 1 y 5 minutos
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> distr(1, 5);
     int tiempoAleatorio = distr(gen);
 
     return tiempoAleatorio;

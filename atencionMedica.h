@@ -11,19 +11,26 @@
 class AtencionMedica {
 public:
 
-    void trasladarPacienteAPila(NodoPaciente* paciente, string nombrePila);
+    void trasladarPacienteAPila1(NodoPaciente* paciente, string nombrePila);
+    void trasladarPacienteAPila2(NodoPaciente* paciente, string nombrePila);
     string atencionMedicaAleatoria();
     string atencionMedicaAleatoriaEspecificaNormal();
     string atencionMedicaAleatoriaEspecificaLeve();
-    string tiempoDeEsperaCodigoAzul();
+    int tiempoDeEsperaCodigoAzul();
     int tiempoDeEsperaEstabilidadUrgente();
     int tiempoDeEsperaUrgenciasNormales();
     int tiempoDeEsperaUrgenciasLeves();
+    int tiempoDeEsperaAtencionMedica1();
 
-    stack<NodoPaciente*> pilaCodigoAzul;
-    stack<NodoPaciente*> pilaEstabilidadUrgente;
-    stack<NodoPaciente*> pilaUrgenciasNormales;
-    stack<NodoPaciente*> pilaUrgenciasLeves;
+    stack<NodoPaciente*> pilaCodigoAzul1;
+    stack<NodoPaciente*> pilaEstabilidadUrgente1;
+    stack<NodoPaciente*> pilaUrgenciasNormales1;
+    stack<NodoPaciente*> pilaUrgenciasLeves1;
+
+    stack<NodoPaciente*> pilaCodigoAzul2;
+    stack<NodoPaciente*> pilaEstabilidadUrgente2;
+    stack<NodoPaciente*> pilaUrgenciasNormales2;
+    stack<NodoPaciente*> pilaUrgenciasLeves2;
 
 };
 
